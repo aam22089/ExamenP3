@@ -2,8 +2,22 @@
 #define GAME_H
 #include "player.hpp"
 #define WALL_COUNT 6
+using namespace std;
+using namespace sf;
 
+Texture fantasmaTexture;
+    
+ if(!fantasmaTexture.loadFromFile("fantasma_1.png"))
+    {
+        cout << "Error al cargar imagen" << endl;
+    }
 
+    Sprite fantasma;
+    fantasma.setTexture(fantasmaTexture);
+
+    fantasma.setTextureRect(IntRect(0,0,64,64));
+    int opacidad = 0;
+    
 class Game
 {
 public:

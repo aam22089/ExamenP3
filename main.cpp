@@ -5,10 +5,10 @@ using namespace std;
 using namespace sf;
 
 
-
 int main() {
     RenderWindow window(VideoMode(450, 400), "SFML works!");
     window.setFramerateLimit(60);
+
 
 
     while (window.isOpen()) {
@@ -24,6 +24,7 @@ int main() {
 
 
         window.clear();
+        //window.draw(fantasma);
         window.display();
     }
 

@@ -4,7 +4,7 @@ Game::Game()
 {
     this->window = new sf::RenderWindow (sf::VideoMode(WIDTH, HEIGHT), "RAY CASTING", sf::Style::Close | sf::Style::Titlebar | sf::Style::Fullscreen);
     this->window->setFramerateLimit(60);
-    //this->window->setMouseCursorVisible(false); //
+    this->window->setMouseCursorVisible(false); //
 
 
     camera.x=window->getSize().x;
@@ -79,6 +79,7 @@ void Game::Update()
     //
 
     Draw();
+    
 }
 
 
