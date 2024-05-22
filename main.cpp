@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "bolita.hpp"
+#include "game.hpp"
 using namespace std;
 using namespace sf;
 
@@ -16,6 +16,10 @@ int main() {
         while (window.pollEvent(event)) {
             if (event.type == Event::Closed)
                 window.close();
+
+                Game game;
+                game.Gameloop();
+                return 0;
         }
 
 
