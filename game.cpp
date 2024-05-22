@@ -10,8 +10,8 @@ Game::Game()
     camera.x=window->getSize().x;
     camera.y=window->getSize().y;
     view.setCenter(camera.x/2,camera.y/2);
-    view.setViewport(sf::FloatRect(0.f,0.f,0.3f,0.3f));
-    //view.setViewport(sf::FloatRect(0.f,0.f,1.f,1.f));
+    //view.setViewport(sf::FloatRect(0.f,0.f,0.3f,0.3f));
+    view.setViewport(sf::FloatRect(0.f,0.f,1.f,1.f));
 
 
     for(int i = 0; i < WALL_COUNT; i++)
