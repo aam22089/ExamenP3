@@ -1,5 +1,8 @@
 #include "game.hpp"
 
+float distancaMovimientoFantasma = 5.0f;
+
+
 Game::Game()
 {
     this->window = new sf::RenderWindow (sf::VideoMode(WIDTH, HEIGHT), "RAY CASTING", sf::Style::Close | sf::Style::Titlebar | sf::Style::Fullscreen);
@@ -32,6 +35,9 @@ Game::Game()
     }
     fantasmaSprite.setTexture(fantasmaTexture);
     fantasmaSprite.setTextureRect(IntRect(0, 0, 128, 128));
+    fantasmaSprite.setPosition(WIDTH/2, HEIGHT/2);
+    
+    std::srand(static_cast<unsigned>(std::time(0))); // Numeros aleatorios
 }
 
 Game::~Game()
@@ -67,7 +73,7 @@ void Game::Draw()
         for(int j = 0; j<walls.size(); j++)
             walls[j].show(window);
     //Draw
-    this->fantasmaSprite.move(.5,.5);
+    this->fantasmaSprite.move(1,1);
     this->window->draw(fantasmaSprite);
 
     window->setView(window->getDefaultView());
@@ -84,6 +90,7 @@ void Game::Update()
     view.setCenter(camera.x/2,camera.y/2);
     view.reset(sf::FloatRect(player.pos.x-camera.x/2,player.pos.y-camera.y/2,camera.x,camera.y));
     Logic();
+    moverFantasma();
 
     //
 
@@ -91,6 +98,27 @@ void Game::Update()
     
 }
 
+void Game::moverFantasma() //Movimiento aleatorio
+{
+
+    sf::Vector2f direccion = player.pos - fantasmaSprite.getPosition(); // Vector que apunta desde el fantasma hacia el jugador
+
+    float magnitud = std::sqrt(direccion.x * direccion.x + direccion.y * direccion.y);
+    if (magnitud != 0)
+    {
+        direccion /= magnitud;
+    }
+
+    sf::Vector2f movimiento = direccion * distancaMovimientoFantasma;
+
+    sf::Vector2f nuevaPosicion = fantasmaSprite.getPosition() + movimiento; // Calcula nueva direccion del fantasma
+
+    if (nuevaPosicion.x >= 0 && nuevaPosicion.x + fantasmaSprite.getGlobalBounds().width <= WIDTH && // Este if verifica que el fantasma este dentro del mapa
+        nuevaPosicion.y >= 0 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height <= HEIGHT)
+    {
+        fantasmaSprite.move(movimiento);
+    }
+}
 
 void Game::Logic()
 {

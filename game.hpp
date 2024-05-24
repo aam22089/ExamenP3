@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 #include "player.hpp"
+#include <cstdlib>
+#include <ctime>
 #define WALL_COUNT 6
 using namespace std;
 using namespace sf;
@@ -23,7 +25,7 @@ private:
     void Update();
     void EventUpdate();
     void Draw();
-    void Fantasma();
+    void moverFantasma();
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
@@ -33,6 +35,8 @@ private:
 
     Texture fantasmaTexture;
     Sprite fantasmaSprite;
+
+    const float MOVE_DISTANCE = 5.0f; // Distancia de movimiento del fantasma
 
 };
 
