@@ -4,19 +4,6 @@
 #define WALL_COUNT 6
 using namespace std;
 using namespace sf;
-
-Texture fantasmaTexture;
-    
- if(!fantasmaTexture.loadFromFile("fantasma_1.png"))
-    {
-        cout << "Error al cargar imagen" << endl;
-    }
-
-    Sprite fantasma;
-    fantasma.setTexture(fantasmaTexture);
-
-    fantasma.setTextureRect(IntRect(0,0,64,64));
-    int opacidad = 0;
     
 class Game
 {
@@ -36,12 +23,16 @@ private:
     void Update();
     void EventUpdate();
     void Draw();
+    void Fantasma();
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
     sf::Vector2f getIntersectionPoint(float d1x1, float d1y1, float d1x2, float d1y2, float d2x1, float d2y1, float d2x2, float d2y2, bool& isIntersects);
     sf::View view;
     sf::Vector2f camera;
+
+    Texture fantasmaTexture;
+    Sprite fantasmaSprite;
 
 };
 

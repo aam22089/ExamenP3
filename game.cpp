@@ -26,6 +26,12 @@ Game::Game()
     walls[4].setPos(1900,300,1300,700);
     walls[5].setPos(1000,500,1000,300);
 
+    if (!fantasmaTexture.loadFromFile("C:\\Users\\santi\\OneDrive\\Documents\\CEDI\\PMP\\PMP Proyecto 3er parcial\\ExamenP3\\fantasma_1.png"))
+    {
+        cout << "Error al cargar la imagen" << endl;
+    }
+    fantasmaSprite.setTexture(fantasmaTexture);
+    fantasmaSprite.setTextureRect(IntRect(0, 0, 64, 64));
 }
 
 Game::~Game()
@@ -61,6 +67,8 @@ void Game::Draw()
         for(int j = 0; j<walls.size(); j++)
             walls[j].show(window);
     //Draw
+    this->window->draw(fantasmaSprite);
+
     window->setView(window->getDefaultView());
     this->window->display();
 }
