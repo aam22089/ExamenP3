@@ -31,7 +31,7 @@ Game::Game()
         cout << "Error al cargar la imagen" << endl;
     }
     fantasmaSprite.setTexture(fantasmaTexture);
-    fantasmaSprite.setTextureRect(IntRect(0, 0, 64, 64));
+    fantasmaSprite.setTextureRect(IntRect(0, 0, 128, 128));
 }
 
 Game::~Game()
@@ -67,6 +67,7 @@ void Game::Draw()
         for(int j = 0; j<walls.size(); j++)
             walls[j].show(window);
     //Draw
+    this->fantasmaSprite.move(.5,.5);
     this->window->draw(fantasmaSprite);
 
     window->setView(window->getDefaultView());
