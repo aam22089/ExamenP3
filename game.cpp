@@ -1,6 +1,7 @@
 #include "game.hpp"
 
-float distancaMovimientoFantasma = 5.0f;
+float distanciaMovimientoFantasma = 5.0f;
+float distanciaMovimientoZombie = 5.0f;
 
 
 Game::Game()
@@ -40,6 +41,12 @@ Game::Game()
     std::srand(static_cast<unsigned>(std::time(0))); // Numeros aleatorios
 
     if(!zombieTexture.loadFromFile())
+    {
+        cout << "Error al cargar la imagen" << endl;
+    }
+    zombieSprite.setTexture(zombieTexture);
+    zombieSprite.setTextureRect(IntRect(0, 0, 128, 128));
+    zombieSprite.setPosition(WIDTH/2, HEIGHT/2);
 }
 
 Game::~Game()
