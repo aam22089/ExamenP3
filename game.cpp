@@ -1,7 +1,7 @@
 #include "game.hpp"
 
-float distanciaMovimientoFantasma = 5.0f;
-float distanciaMovimientoZombie = 5.0f;
+float distanciaMovimientoFantasma = 3.5f;
+float distanciaMovimientoZombie = 4.5f;
 
 
 Game::Game()
@@ -132,8 +132,8 @@ void Game::moverFantasma() //Movimiento aleatorio
 
     sf::Vector2f nuevaPosicion = fantasmaSprite.getPosition() + movimiento; // Calcula nueva direccion del fantasma
 
-    if (nuevaPosicion.x > 1 && nuevaPosicion.x + fantasmaSprite.getGlobalBounds().width < WIDTH-1 && // Este if verifica que el fantasma este dentro del mapa
-        nuevaPosicion.y > 1 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height < HEIGHT-1)
+    if (nuevaPosicion.x > 0 && nuevaPosicion.x + fantasmaSprite.getGlobalBounds().width < WIDTH-1 && // Este if verifica que el fantasma este dentro del mapa
+        nuevaPosicion.y > 0 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height < HEIGHT-1)
     {
         fantasmaSprite.move(movimiento);
     }
