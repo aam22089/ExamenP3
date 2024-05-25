@@ -3,7 +3,7 @@
 #include "player.hpp"
 #include <cstdlib>
 #include <ctime>
-#define WALL_COUNT 6
+#define WALL_COUNT 10
 using namespace std;
 using namespace sf;
     

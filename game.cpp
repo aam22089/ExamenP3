@@ -29,6 +29,12 @@ Game::Game()
     walls[3].setPos(1500,300,1900,300);
     walls[4].setPos(1900,300,1300,700);
     walls[5].setPos(1000,500,1000,300);
+    walls[6].setPos(0,HEIGHT,WIDTH,HEIGHT);
+    walls[7].setPos(WIDTH,HEIGHT,WIDTH,0);
+    walls[8].setPos(0,0,0,HEIGHT);
+    walls[9].setPos(WIDTH,0,0,0);
+
+
 
     if (!fantasmaTexture.loadFromFile("fantasma_1.png"))
     {
@@ -126,8 +132,8 @@ void Game::moverFantasma() //Movimiento aleatorio
 
     sf::Vector2f nuevaPosicion = fantasmaSprite.getPosition() + movimiento; // Calcula nueva direccion del fantasma
 
-    if (nuevaPosicion.x >= 0 && nuevaPosicion.x + fantasmaSprite.getGlobalBounds().width <= WIDTH && // Este if verifica que el fantasma este dentro del mapa
-        nuevaPosicion.y >= 0 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height <= HEIGHT)
+    if (nuevaPosicion.x > 1 && nuevaPosicion.x + fantasmaSprite.getGlobalBounds().width < WIDTH-1 && // Este if verifica que el fantasma este dentro del mapa
+        nuevaPosicion.y > 1 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height < HEIGHT-1)
     {
         fantasmaSprite.move(movimiento);
     }
@@ -147,11 +153,12 @@ void Game::moverZombie()
 
     sf::Vector2f nuevaPosicion = zombieSprite.getPosition() + movimiento; // Calcula nueva direccion del zombie
 
-    if (nuevaPosicion.x >= 0 && nuevaPosicion.x + zombieSprite.getGlobalBounds().width <= WIDTH && // Este if verifica que el zombie este dentro del mapa
-        nuevaPosicion.y >= 0 && nuevaPosicion.y + zombieSprite.getGlobalBounds().height <= HEIGHT)
+    if (nuevaPosicion.x > 1 && nuevaPosicion.x + zombieSprite.getGlobalBounds().width < WIDTH-1 && // Este if verifica que el zombie este dentro del mapa
+        nuevaPosicion.y > 1 && nuevaPosicion.y + zombieSprite.getGlobalBounds().height < HEIGHT-1)
     {
         zombieSprite.move(movimiento);
     }
+
 }
 
 void Game::Logic()
