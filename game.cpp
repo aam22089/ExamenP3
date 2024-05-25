@@ -40,13 +40,13 @@ Game::Game()
     
     std::srand(static_cast<unsigned>(std::time(0))); // Numeros aleatorios
 
-    if(!zombieTexture.loadFromFile())
+    if(!zombieTexture.loadFromFile("C:\\Users\\santi\\OneDrive\\Documents\\CEDI\\PMP\\PMP Proyecto 3er parcial\\ExamenP3\\Zombie_1.png"))
     {
         cout << "Error al cargar la imagen" << endl;
     }
     zombieSprite.setTexture(zombieTexture);
     zombieSprite.setTextureRect(IntRect(0, 0, 128, 128));
-    zombieSprite.setPosition(WIDTH/2, HEIGHT/2);
+    zombieSprite.setPosition(WIDTH/4, HEIGHT/4);
 }
 
 Game::~Game()
@@ -82,8 +82,11 @@ void Game::Draw()
         for(int j = 0; j<walls.size(); j++)
             walls[j].show(window);
     //Draw
-    this->fantasmaSprite.move(1,1);
+    this->fantasmaSprite.move(.5,.5);
     this->window->draw(fantasmaSprite);
+
+    this->zombieSprite.move(.5,.5);
+    this->window->draw(zombieSprite);
 
     window->setView(window->getDefaultView());
     this->window->display();
@@ -100,6 +103,7 @@ void Game::Update()
     view.reset(sf::FloatRect(player.pos.x-camera.x/2,player.pos.y-camera.y/2,camera.x,camera.y));
     Logic();
     moverFantasma();
+    moverZombie();
 
     //
 
@@ -118,7 +122,7 @@ void Game::moverFantasma() //Movimiento aleatorio
         direccion /= magnitud;
     }
 
-    sf::Vector2f movimiento = direccion * distancaMovimientoFantasma;
+    sf::Vector2f movimiento = direccion * distanciaMovimientoFantasma;
 
     sf::Vector2f nuevaPosicion = fantasmaSprite.getPosition() + movimiento; // Calcula nueva direccion del fantasma
 
@@ -126,6 +130,27 @@ void Game::moverFantasma() //Movimiento aleatorio
         nuevaPosicion.y >= 0 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height <= HEIGHT)
     {
         fantasmaSprite.move(movimiento);
+    }
+}
+
+void Game::moverZombie()
+{
+    sf::Vector2f direccion = player.pos - zombieSprite.getPosition(); // Vector que apunta desde el zombie hacia el jugador
+
+    float magnitud = std::sqrt(direccion.x * direccion.x + direccion.y * direccion.y);
+    if (magnitud != 0)
+    {
+        direccion /= magnitud;
+    }
+
+    sf::Vector2f movimiento = direccion * distanciaMovimientoZombie;
+
+    sf::Vector2f nuevaPosicion = zombieSprite.getPosition() + movimiento; // Calcula nueva direccion del zombie
+
+    if (nuevaPosicion.x >= 0 && nuevaPosicion.x + zombieSprite.getGlobalBounds().width <= WIDTH && // Este if verifica que el zombie este dentro del mapa
+        nuevaPosicion.y >= 0 && nuevaPosicion.y + zombieSprite.getGlobalBounds().height <= HEIGHT)
+    {
+        zombieSprite.move(movimiento);
     }
 }
 
