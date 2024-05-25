@@ -30,7 +30,7 @@ void Player::show(sf::RenderWindow *window)
 void Player::move()
 {
     //this->pos = sf::Vector2f(sf::Mouse::getPosition((*window)).x, sf::Mouse::getPosition((*window)).y);
-    float speed = 1;
+    float speed = 5;
     this->circle->setPosition(this->pos);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
         this->pos.y-=speed;

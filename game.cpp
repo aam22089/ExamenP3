@@ -30,7 +30,7 @@ Game::Game()
     walls[4].setPos(1900,300,1300,700);
     walls[5].setPos(1000,500,1000,300);
 
-    if (!fantasmaTexture.loadFromFile("C:\\Users\\santi\\OneDrive\\Documents\\CEDI\\PMP\\PMP Proyecto 3er parcial\\ExamenP3\\fantasma_1.png"))
+    if (!fantasmaTexture.loadFromFile("fantasma_1.png"))
     {
         cout << "Error al cargar la imagen" << endl;
     }
@@ -40,7 +40,7 @@ Game::Game()
     
     std::srand(static_cast<unsigned>(std::time(0))); // Numeros aleatorios
 
-    if(!zombieTexture.loadFromFile("C:\\Users\\santi\\OneDrive\\Documents\\CEDI\\PMP\\PMP Proyecto 3er parcial\\ExamenP3\\Zombie_1.png"))
+    if(!zombieTexture.loadFromFile("Zombie_1.png"))
     {
         cout << "Error al cargar la imagen" << endl;
     }
@@ -82,10 +82,10 @@ void Game::Draw()
         for(int j = 0; j<walls.size(); j++)
             walls[j].show(window);
     //Draw
-    this->fantasmaSprite.move(.5,.5);
+    this->fantasmaSprite.move(.1,.1);
     this->window->draw(fantasmaSprite);
 
-    this->zombieSprite.move(.5,.5);
+    this->zombieSprite.move(.1,.1);
     this->window->draw(zombieSprite);
 
     window->setView(window->getDefaultView());
