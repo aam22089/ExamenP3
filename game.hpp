@@ -26,6 +26,7 @@ private:
     void EventUpdate();
     void Draw();
     void moverFantasma();
+    void moverZombie();
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
@@ -35,6 +36,9 @@ private:
 
     Texture fantasmaTexture;
     Sprite fantasmaSprite;
+
+    Texture zombieTexture;
+    Sprite zombieSprite;
 
     const float MOVE_DISTANCE = 5.0f; // Distancia de movimiento del fantasma
 

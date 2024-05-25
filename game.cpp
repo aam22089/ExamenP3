@@ -38,6 +38,8 @@ Game::Game()
     fantasmaSprite.setPosition(WIDTH/2, HEIGHT/2);
     
     std::srand(static_cast<unsigned>(std::time(0))); // Numeros aleatorios
+
+    if(!zombieTexture.loadFromFile())
 }
 
 Game::~Game()
