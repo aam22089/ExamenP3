@@ -15,6 +15,7 @@ class Line
 public:
     Line(float _x1, float _y1, float _x2, float _y2);
     Line();
+    int grid[WIDTH][HEIGHT];
     virtual ~Line();
     void show(sf::RenderWindow *window);
     void setPos(float _x1, float _y1, float _x2, float _y2);
