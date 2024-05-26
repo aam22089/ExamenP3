@@ -32,16 +32,16 @@ void Player::move()
     //this->pos = sf::Vector2f(sf::Mouse::getPosition((*window)).x, sf::Mouse::getPosition((*window)).y);
     float speed = 5;
     this->circle->setPosition(this->pos);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && this->pos.y>0)
         this->pos.y-=speed;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && this->pos.y<HEIGHT-1)
         this->pos.y+=speed;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && this->pos.x>0)
         this->pos.x-=speed;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && this->pos.x<WIDTH-1)
         this->pos.x+=speed;
 
 }
