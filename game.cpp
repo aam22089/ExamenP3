@@ -153,13 +153,17 @@ void Game::moverZombie()
 
     sf::Vector2f nuevaPosicion = zombieSprite.getPosition() + movimiento; // Calcula nueva direccion del zombie
 
-    if (nuevaPosicion.x > 1 && nuevaPosicion.x + zombieSprite.getGlobalBounds().width < WIDTH-1 && // Este if verifica que el zombie este dentro del mapa
-        nuevaPosicion.y > 1 && nuevaPosicion.y + zombieSprite.getGlobalBounds().height < HEIGHT-1)
+
+
+    if (nuevaPosicion.x > 1 && nuevaPosicion.x + zombieSprite.getLocalBounds().width < WIDTH-2 && // Este if verifica que el zombie este dentro del mapa
+        nuevaPosicion.y > 1 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-2)
     {
         zombieSprite.move(movimiento);
     }
 
 }
+
+
 
 void Game::Logic()
 {
@@ -174,6 +178,7 @@ void Game::Logic()
             auto L2 = walls[j].L[1].position;
 
             auto p = getIntersectionPoint(p1.x,p1.y,p2.x,p2.y,L1.x,L1.y,L2.x,L2.y,player.lines[i].isIntersects);
+            
 
             if(this->player.lines[i].isIntersects)
                 this->player.lines[i].setPos(this->player.pos.x, this->player.pos.y, p.x, p.y);
