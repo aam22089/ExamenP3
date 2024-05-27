@@ -136,6 +136,9 @@ void Game::moverFantasma() //Movimiento aleatorio
         nuevaPosicion.y > 0 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height < HEIGHT-1)
     {
         fantasmaSprite.move(movimiento);
+    } else 
+    {
+        fantasmaSprite.setPosition(500,500);
     }
 }
 
