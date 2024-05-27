@@ -6,6 +6,7 @@
 #define WALL_COUNT 10
 using namespace std;
 using namespace sf;
+
     
 class Game
 {
