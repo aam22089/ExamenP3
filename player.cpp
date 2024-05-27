@@ -35,13 +35,13 @@ void Player::move()
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && this->pos.y>0)
         this->pos.y-=speed;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && this->pos.y<HEIGHT-1)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && this->pos.y<HEIGHT-50)
         this->pos.y+=speed;
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && this->pos.x>0)
         this->pos.x-=speed;
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && this->pos.x<WIDTH-1)
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && this->pos.x<WIDTH-50)
         this->pos.x+=speed;
 
 }

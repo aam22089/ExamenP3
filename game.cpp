@@ -138,7 +138,7 @@ void Game::moverFantasma() //Movimiento aleatorio
         fantasmaSprite.move(movimiento);
     } else 
     {
-        fantasmaSprite.setPosition(500,500);
+      //  fantasmaSprite.setPosition(500,500);
     }
 }
 
@@ -162,6 +162,9 @@ void Game::moverZombie()
         nuevaPosicion.y > 1 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-2)
     {
         zombieSprite.move(movimiento);
+    }else 
+    {
+      //  zombieSprite.setPosition(500,500);
     }
 
 }
