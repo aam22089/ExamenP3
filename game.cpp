@@ -138,7 +138,11 @@ void Game::moverFantasma() //Movimiento aleatorio
         fantasmaSprite.move(movimiento);
     } else 
     {
-      //  fantasmaSprite.setPosition(500,500);
+        if(nuevaPosicion.y > 1 && nuevaPosicion.y + fantasmaSprite.getLocalBounds().height > HEIGHT-2)
+        fantasmaSprite.setPosition(fantasmaSprite.getPosition().x, fantasmaSprite.getPosition().y-5);
+
+        if(nuevaPosicion.x > 1 && nuevaPosicion.x + fantasmaSprite.getLocalBounds().width > WIDTH-2)
+        fantasmaSprite.setPosition(fantasmaSprite.getPosition().x-5, fantasmaSprite.getPosition().y);
     }
 }
 
@@ -164,7 +168,11 @@ void Game::moverZombie()
         zombieSprite.move(movimiento);
     }else 
     {
-      //  zombieSprite.setPosition(500,500);
+        if(nuevaPosicion.y > 1 && nuevaPosicion.y + zombieSprite.getLocalBounds().height > HEIGHT-2)
+        zombieSprite.setPosition(zombieSprite.getPosition().x, zombieSprite.getPosition().y-4);
+
+        if(nuevaPosicion.x > 1 && nuevaPosicion.x + zombieSprite.getLocalBounds().width > WIDTH-2)
+        zombieSprite.setPosition(zombieSprite.getPosition().x-4, zombieSprite.getPosition().y);
     }
 
 }
