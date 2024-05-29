@@ -91,7 +91,6 @@ void Game::Draw()
     //Draw
     if(isMonsterVisible(fantasmaSprite))
     {
-
         cout << "visible"  << endl;
         this->window->draw(fantasmaSprite);
         this->fantasmaSprite.move(.1,.1);
@@ -189,6 +188,8 @@ void Game::moverZombie()
 
 bool Game::isMonsterVisible(sf::Sprite monster)
 {
+    bool isVisible = false;
+
     for(int i = 0; i < LINES_COUNT; i++)
     {
         auto p1 = player.lines[i].L[0].position;
@@ -209,13 +210,13 @@ bool Game::isMonsterVisible(sf::Sprite monster)
         p = getIntersectionPoint(p1.x, p1.y, p2.x, p2.y, M3.x, M3.y, M4.x, M4.y, intersects4);
 
         if(intersects1 || intersects2 || intersects3 || intersects4)
-        return true;
-        
-        return false;
+        {
+            isVisible = true;
+            break;
+        }
     }
 
-
-    return false;
+    return isVisible;
 }
 
 void Game::Logic()
