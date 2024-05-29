@@ -88,11 +88,18 @@ void Game::Draw()
         for(int j = 0; j<walls.size(); j++)
             walls[j].show(window);
     //Draw
-    this->fantasmaSprite.move(.1,.1);
-    this->window->draw(fantasmaSprite);
-
-    this->zombieSprite.move(.1,.1);
-    this->window->draw(zombieSprite);
+    if(isMonsterVisible(fantasmaSprite))
+    {
+        this->window->draw(fantasmaSprite);
+        this->fantasmaSprite.move(.1,.1);
+    }
+    
+    if(isMonsterVisible(zombieSprite))
+    {
+        this->window->draw(zombieSprite);
+        this->zombieSprite.move(.1,.1);
+    }
+    
 
     window->setView(window->getDefaultView());
     this->window->display();
@@ -177,7 +184,36 @@ void Game::moverZombie()
 
 }
 
+bool Game::isMonsterVisible(sf::Sprite monster)
+{
+    for(int i = 0; i < LINES_COUNT; i++)
+    {
+        auto p1 = player.lines[i].L[0].position;
+        auto p2 = player.lines[i].L[1].position;
 
+        auto M1 = monster.getPosition();
+        auto M2 = sf::Vector2f(monster.getPosition().x + monster.getGlobalBounds().width, monster.getPosition().y);
+        auto M3 = sf::Vector2f(monster.getPosition().x, monster.getPosition().y + monster.getGlobalBounds().height);
+        auto M4 = sf::Vector2f(monster.getPosition().x + monster.getGlobalBounds().width, monster.getPosition().y + monster.getGlobalBounds().height);
+
+        bool intersects1, intersects2, intersects3, intersects4;
+
+        sf::Vector2f p;
+
+        p = getIntersectionPoint(p1.x, p1.y, p2.x, p2.y, M1.x, M1.y, M2.x, M2.y, intersects1);
+        p = getIntersectionPoint(p1.x, p1.y, p2.x, p2.y, M1.x, M1.y, M3.x, M3.y, intersects2);
+        p = getIntersectionPoint(p1.x, p1.y, p2.x, p2.y, M2.x, M2.y, M4.x, M4.y, intersects3);
+        p = getIntersectionPoint(p1.x, p1.y, p2.x, p2.y, M3.x, M3.y, M4.x, M4.y, intersects4);
+
+        if(intersects1 || intersects2 || intersects3 || intersects4)
+        return true;
+        
+        return false;
+    }
+
+
+    return false;
+}
 
 void Game::Logic()
 {

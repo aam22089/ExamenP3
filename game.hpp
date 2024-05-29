@@ -28,6 +28,7 @@ private:
     void Draw();
     void moverFantasma();
     void moverZombie();
+    bool isMonsterVisible(sf::Sprite monster);
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
