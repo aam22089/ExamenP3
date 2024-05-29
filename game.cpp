@@ -1,5 +1,6 @@
 #include "game.hpp"
-
+#include <iostream>
+using namespace std;
 float distanciaMovimientoFantasma = 3.5f;
 float distanciaMovimientoZombie = 4.5f;
 
@@ -90,6 +91,8 @@ void Game::Draw()
     //Draw
     if(isMonsterVisible(fantasmaSprite))
     {
+
+        cout << "visible"  << endl;
         this->window->draw(fantasmaSprite);
         this->fantasmaSprite.move(.1,.1);
     }
@@ -192,9 +195,9 @@ bool Game::isMonsterVisible(sf::Sprite monster)
         auto p2 = player.lines[i].L[1].position;
 
         auto M1 = monster.getPosition();
-        auto M2 = sf::Vector2f(monster.getPosition().x + monster.getGlobalBounds().width, monster.getPosition().y);
-        auto M3 = sf::Vector2f(monster.getPosition().x, monster.getPosition().y + monster.getGlobalBounds().height);
-        auto M4 = sf::Vector2f(monster.getPosition().x + monster.getGlobalBounds().width, monster.getPosition().y + monster.getGlobalBounds().height);
+        auto M2 = sf::Vector2f(monster.getPosition().x + monster.getLocalBounds().width, monster.getPosition().y);
+        auto M3 = sf::Vector2f(monster.getPosition().x, monster.getPosition().y + monster.getLocalBounds().height);
+        auto M4 = sf::Vector2f(monster.getPosition().x + monster.getLocalBounds().width, monster.getPosition().y + monster.getLocalBounds().height);
 
         bool intersects1, intersects2, intersects3, intersects4;
 
