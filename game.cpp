@@ -233,8 +233,12 @@ void Game::Logic()
             auto p3= getIntersectionPoint(zombieSprite.getPosition().x, zombieSprite.getPosition().y,zombieSprite.getPosition().x+zombieSprite.getGlobalBounds().width, zombieSprite.getPosition().y,L1.x,L1.y,L2.x,L2.y, in);
             auto p4= getIntersectionPoint(zombieSprite.getPosition().x+zombieSprite.getGlobalBounds().width, zombieSprite.getPosition().y,zombieSprite.getPosition().x+zombieSprite.getGlobalBounds().width, zombieSprite.getPosition().y+zombieSprite.getGlobalBounds().height,L1.x,L1.y,L2.x,L2.y, in);
             auto p5= getIntersectionPoint(zombieSprite.getPosition().x+zombieSprite.getGlobalBounds().width, zombieSprite.getPosition().y+zombieSprite.getGlobalBounds().height,zombieSprite.getPosition().x, zombieSprite.getPosition().y+zombieSprite.getGlobalBounds().height,L1.x,L1.y,L2.x,L2.y, in);
+            auto p6= getIntersectionPoint(zombieSprite.getPosition().x, zombieSprite.getPosition().y+zombieSprite.getGlobalBounds().height,zombieSprite.getPosition().x, zombieSprite.getPosition().y,L1.x,L1.y,L2.x,L2.y, in);
             
-
+if(!in)
+{
+    zombieSprite.move(0,0);
+}
             if(this->player.lines[i].isIntersects)
                 this->player.lines[i].setPos(this->player.pos.x, this->player.pos.y, p.x, p.y);
             //walls[j].setAlpha(0);
