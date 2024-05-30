@@ -54,6 +54,14 @@ Game::Game()
     zombieSprite.setTexture(zombieTexture);
     zombieSprite.setTextureRect(IntRect(0, 0, 128, 128));
     zombieSprite.setPosition(WIDTH/4, HEIGHT/4);
+
+    if(!paredExteriorTexture.loadFromFile("paredes_externas.png"))
+    {
+        cout << "Error al cargar la imagen" << endl;
+    }
+    paredExteriorSprite.setTexture(paredExteriorTexture);
+    paredExteriorSprite.setTextureRect(IntRect(0, 0, 128, 128));
+    //paredExteriorSprite.setPosition(WIDTH/4, HEIGHT/4);
 }
 
 Game::~Game()
@@ -88,6 +96,8 @@ void Game::Draw()
         this->player.show(window);
         for(int j = 0; j<walls.size(); j++)
             walls[j].show(window);
+
+    drawExteriorWalls();
     //Draw
     if(isMonsterVisible(fantasmaSprite))
     {
@@ -101,7 +111,6 @@ void Game::Draw()
         this->window->draw(zombieSprite);
         this->zombieSprite.move(.1,.1);
     }
-    
 
     window->setView(window->getDefaultView());
     this->window->display();
@@ -217,6 +226,33 @@ bool Game::isMonsterVisible(sf::Sprite monster)
     }
 
     return isVisible;
+}
+
+void Game::drawExteriorWalls()
+{
+    for(int i = 0; i < WIDTH; i += paredExteriorSprite.getGlobalBounds().width)
+    {
+        paredExteriorSprite.setPosition(i,0);
+        this->window->draw(paredExteriorSprite);
+    }
+
+    for(int i = 0; i < WIDTH; i += paredExteriorSprite.getGlobalBounds().width)
+    {
+        paredExteriorSprite.setPosition(i,HEIGHT - paredExteriorSprite.getGlobalBounds().height);
+        this->window->draw(paredExteriorSprite);
+    }
+
+    for(int i = 0; i < HEIGHT; i += paredExteriorSprite.getGlobalBounds().height)
+    {
+        paredExteriorSprite.setPosition(0,i);
+        this->window->draw(paredExteriorSprite);
+    }
+
+    for(int i = 0; i < HEIGHT; i += paredExteriorSprite.getGlobalBounds().height)
+    {
+        paredExteriorSprite.setPosition(WIDTH - paredExteriorSprite.getGlobalBounds().width, i);
+        window->draw(paredExteriorSprite);
+    }
 }
 
 void Game::Logic()

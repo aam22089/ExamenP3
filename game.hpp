@@ -29,6 +29,7 @@ private:
     void moverFantasma();
     void moverZombie();
     bool isMonsterVisible(sf::Sprite monster);
+    void drawExteriorWalls();
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
@@ -41,6 +42,9 @@ private:
 
     Texture zombieTexture;
     Sprite zombieSprite;
+
+    Texture paredExteriorTexture;
+    Sprite paredExteriorSprite;
 
     const float MOVE_DISTANCE = 5.0f; // Distancia de movimiento del fantasma
 
