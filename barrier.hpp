@@ -4,16 +4,15 @@
 using namespace std;
 using namespace sf;
 
-struct hitBox
-{
-    Line top,down,left,right;
-};
-
 class Barrier
 {
     public:
-    vector<Line>paredes;
-    Sprite pinternas;
+    RectangleShape Hitbox;
+
+    Barrier(int b, int h);
+    
+    void addHitBox(RectangleShape hb);
+
 
 };
 
