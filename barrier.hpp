@@ -7,9 +7,10 @@ using namespace sf;
 class Barrier
 {
     public:
+    vector <RectangleShape> HitBoxes;
     RectangleShape Hitbox;
 
-    Barrier(int b, int h);
+    Barrier(float b, float h, int x, int y);
     
     void addHitBox(RectangleShape hb);
 

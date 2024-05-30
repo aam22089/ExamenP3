@@ -1,11 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 #include "player.hpp"
+#include "barrier.hpp"
 #include <cstdlib>
 #include <ctime>
 #define WALL_COUNT 10
 using namespace std;
 using namespace sf;
+
 
     
 class Game
