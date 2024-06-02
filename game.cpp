@@ -37,6 +37,7 @@ Game::Game()
 
 
 
+
     if (!fantasmaTexture.loadFromFile("fantasma_1.png"))
     {
         cout << "Error al cargar la imagen" << endl;
