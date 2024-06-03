@@ -1,4 +1,5 @@
 #include "game.hpp"
+#include "barrier.hpp"
 #include <iostream>
 using namespace std;
 float distanciaMovimientoFantasma = 3.5f;
@@ -34,6 +35,8 @@ Game::Game()
     walls[7].setPos(WIDTH,HEIGHT,WIDTH,0);
     walls[8].setPos(0,0,0,HEIGHT);
     walls[9].setPos(WIDTH,0,0,0);
+
+    Barrier pared1();
 
 
 
