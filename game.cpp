@@ -1,8 +1,11 @@
 #include "game.hpp"
 #include <iostream>
+
 using namespace std;
 float distanciaMovimientoFantasma = 3.5f;
 float distanciaMovimientoZombie = 4.5f;
+
+Rectangle rect(Vector2f(30,30));
 
 
 Game::Game()
@@ -83,6 +86,9 @@ void Game::EventUpdate()
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                     this->window->close();
                 break;
+                    case sf::Event::MouseButtonPressed:
+                    shoot();
+                break;
             default:
                 break;
         }
@@ -113,6 +119,11 @@ void Game::Draw()
         this->zombieSprite.move(.1,.1);
     }
 
+    for(auto &rect : rectangles)
+    {
+        rect.drawTo(*window);
+    }
+
     window->setView(window->getDefaultView());
     this->window->display();
 }
@@ -129,6 +140,11 @@ void Game::Update()
     Logic();
     moverFantasma();
     moverZombie();
+
+    for(auto& rect : rectangles)
+    {
+        rect.update();
+    }
 
     //
 
@@ -254,6 +270,16 @@ void Game::drawExteriorWalls()
         paredExteriorSprite.setPosition(WIDTH - paredExteriorSprite.getGlobalBounds().width, i);
         window->draw(paredExteriorSprite);
     }
+}
+
+void Game::shoot()
+{
+        int x = event.mouseButton.x;
+        int y = event.mouseButton.y;
+        Rectangle newRect(Vector2f(30, 30));
+        newRect.setObjective(Vector2f(x,y));
+        newRect.setPosition(player.pos);
+        rectangles.push_back(newRect);
 }
 
 void Game::Logic()
