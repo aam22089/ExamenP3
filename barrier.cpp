@@ -4,11 +4,11 @@ Barrier::Barrier(float b, float h, int x, int y)
 {
    
     this->Hitbox.setSize(Vector2f(b,h));
-    this->addHitBox(Hitbox);
     this->Hitbox.setPosition(x,y);
+    this->HitBoxes.push_back(this->Hitbox);
 }
 
-void Barrier::addHitBox(RectangleShape hb)
+void Barrier::addTexture(Texture pared)
 {
-    this->HitBoxes.push_back(hb);
+    this->spared.setTexture(pared);
 }

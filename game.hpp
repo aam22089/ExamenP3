@@ -2,6 +2,7 @@
 #define GAME_H
 #include "player.hpp"
 #include "barrier.hpp"
+#include "rectangle.hpp"
 #include <cstdlib>
 #include <ctime>
 #define WALL_COUNT 10
@@ -32,6 +33,7 @@ private:
     void moverZombie();
     bool isMonsterVisible(sf::Sprite monster);
     void drawExteriorWalls();
+    void shoot();
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
@@ -47,6 +49,8 @@ private:
 
     Texture paredExteriorTexture;
     Sprite paredExteriorSprite;
+
+    vector<Rectangle> rectangles;
 
     const float MOVE_DISTANCE = 5.0f; // Distancia de movimiento del fantasma
 

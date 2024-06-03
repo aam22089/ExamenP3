@@ -9,10 +9,12 @@ class Barrier
     public:
     vector <RectangleShape> HitBoxes;
     RectangleShape Hitbox;
+    Sprite spared;
+    Texture tpared;
 
     Barrier(float b, float h, int x, int y);
     
-    void addHitBox(RectangleShape hb);
+    void addTexture(Texture pared);
 
 
 };
