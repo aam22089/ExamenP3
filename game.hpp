@@ -23,6 +23,7 @@ private:
     sf::Event event;
     Player player;
     std::vector<Line> walls;
+    vector <Barrier> HitBoxes;
 
 private:
     void Logic();

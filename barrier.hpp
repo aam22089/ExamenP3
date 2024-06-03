@@ -7,12 +7,12 @@ using namespace sf;
 class Barrier
 {
     public:
-    vector <RectangleShape> HitBoxes;
+    
     RectangleShape Hitbox;
     Sprite spared;
     Texture tpared;
 
-    Barrier(float b, float h, int x, int y);
+    Barrier(float b, float h, int x, int y, String direct);
     
     void addTexture(Texture pared);
 
