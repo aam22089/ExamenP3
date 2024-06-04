@@ -22,11 +22,17 @@ public:
     void setAlpha(uint8_t a);
     sf::Vertex getPoint1() {return point1;}
     sf::Vertex getPoint2() {return point2;}
+
+    sf::Vector2f getStartPoint() const;
+    sf::Vector2f getEndPoint() const;
+
 private:
     sf::VertexArray L;
     sf::Vertex point1;
     sf::Vertex point2;
     bool isIntersects;
+
+    float startX, startY, endX, endY;
 
 friend class Player;
 friend class Game;

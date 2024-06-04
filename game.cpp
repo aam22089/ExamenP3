@@ -2,10 +2,9 @@
 #include <iostream>
 
 using namespace std;
-float distanciaMovimientoFantasma = 3.5f;
-float distanciaMovimientoZombie = 4.5f;
+float distanciaMovimientoFantasma = 2.5f;
+float distanciaMovimientoZombie = 3.5f;
 
-Rectangle rect(Vector2f(30,30));
 
 
 Game::Game()
@@ -89,6 +88,7 @@ void Game::EventUpdate()
                     this->window->close();
                 break;
                     case sf::Event::MouseButtonPressed:
+                    if (this->event.mouseButton.button == sf::Mouse::Left)  
                     shoot();
                 break;
             default:
@@ -121,9 +121,9 @@ void Game::Draw()
         this->zombieSprite.move(.1,.1);
     }
 
-    for(auto &rect : rectangles)
+    for (const auto &bullet : bullets)
     {
-        rect.drawTo(*window);
+        this->window->draw(bullet);
     }
 
     window->setView(window->getDefaultView());
@@ -142,11 +142,7 @@ void Game::Update()
     Logic();
     moverFantasma();
     moverZombie();
-
-    for(auto& rect : rectangles)
-    {
-        rect.update();
-    }
+    updateBullets();
 
     //
 
@@ -276,12 +272,85 @@ void Game::drawExteriorWalls()
 
 void Game::shoot()
 {
-        int x = event.mouseButton.x;
-        int y = event.mouseButton.y;
-        Rectangle newRect(Vector2f(30, 30));
-        newRect.setObjective(Vector2f(x,y));
-        newRect.setPosition(player.pos);
-        rectangles.push_back(newRect);
+    sf::RectangleShape bullet;
+    bullet.setSize(sf::Vector2f(10, 5)); // Tamaño de la bala
+    bullet.setFillColor(sf::Color::White); // Color de la bala
+    bullet.setPosition(player.pos); // Posición inicial de la bala
+
+    // Obtener la dirección del rayo central
+    sf::Vertex centralRayStart = player.lines[LINES_COUNT / 2].L[0];
+    sf::Vertex centralRayEnd = player.lines[LINES_COUNT / 2].L[1];
+
+    sf::Vector2f direction = centralRayEnd.position - centralRayStart.position;
+    float magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    if (magnitude != 0)
+    {
+        direction /= magnitude; // Normalizar la dirección
+    }
+    bulletDirections.push_back(direction);
+
+    bullets.push_back(bullet);
+}
+
+void Game::updateBullets()
+{
+    
+    for (size_t i = 0; i < bullets.size(); ++i)
+    {
+        Vector2f startPoint = walls[i].getStartPoint();
+        Vector2f endPoint = walls[i].getEndPoint();
+
+        bullets[i].move(bulletDirections[i] * 10.0f); // Mover la bala en su dirección
+
+        // Verificar colisión con las paredes delimitantes del mapa
+        if (bullets[i].getPosition().x < 0 || bullets[i].getPosition().x > WIDTH ||
+            bullets[i].getPosition().y < 0 || bullets[i].getPosition().y > HEIGHT)
+        {
+            // Eliminar la bala
+            bullets.erase(bullets.begin() + i);
+            bulletDirections.erase(bulletDirections.begin() + i);
+            break; 
+        }
+
+        // Verificar colisión con las paredes dentro del mapa
+        for (int j = 0; j < WALL_COUNT; ++j)
+        {
+            if (isBulletIntersectLine(bullets[i].getPosition(), walls[j]))
+            {
+                // Eliminar la bala si choca con una pared interna. Esto no sirve aun
+                bullets.erase(bullets.begin() + i);
+                bulletDirections.erase(bulletDirections.begin() + i);
+                break;
+            }
+        }
+
+        // Eliminar bala si choca con el fantasma
+        if (bullets[i].getGlobalBounds().intersects(fantasmaSprite.getGlobalBounds()))
+        {
+            bullets.erase(bullets.begin() + i);
+            bulletDirections.erase(bulletDirections.begin() + i);
+            break;
+        }
+
+        // Eliminar bala si choca con el zombie
+        if (bullets[i].getGlobalBounds().intersects(zombieSprite.getGlobalBounds()))
+        {
+            bullets.erase(bullets.begin() + i);
+            bulletDirections.erase(bulletDirections.begin() + i);
+            break;
+        }
+    }
+}
+
+bool Game::isBulletIntersectLine(const sf::Vector2f &point, const Line &wall)
+{
+    if (point.x >= wall.getStartPoint().x && point.x <= wall.getEndPoint().x &&
+        point.y >= std::min(wall.getStartPoint().y, wall.getEndPoint().y) &&
+        point.y <= std::max(wall.getStartPoint().y, wall.getEndPoint().y))
+    {
+        return true;
+    }
+    return false;
 }
 
 void Game::Logic()
