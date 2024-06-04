@@ -2,8 +2,8 @@
 #include <iostream>
 
 using namespace std;
-float distanciaMovimientoFantasma = 3.5f;
-float distanciaMovimientoZombie = 4.5f;
+float distanciaMovimientoFantasma = 2.5f;
+float distanciaMovimientoZombie = 3.5f;
 
 
 
