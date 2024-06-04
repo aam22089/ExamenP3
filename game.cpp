@@ -272,7 +272,7 @@ void Game::shoot()
 {
     sf::RectangleShape bullet;
     bullet.setSize(sf::Vector2f(10, 5)); // Tamaño de la bala
-    bullet.setFillColor(sf::Color::Red); // Color de la bala
+    bullet.setFillColor(sf::Color::White); // Color de la bala
     bullet.setPosition(player.pos); // Posición inicial de la bala
 
     // Obtener la dirección del rayo central
