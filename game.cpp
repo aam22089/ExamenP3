@@ -1,5 +1,4 @@
 #include "game.hpp"
-#include "barrier.hpp"
 #include <iostream>
 
 using namespace std;
