@@ -13,8 +13,6 @@ class Barrier
     Texture tpared;
 
     Barrier(float b, float h, int x, int y, String direct);
-    
-    void addTexture(Texture pared);
 
 
 };

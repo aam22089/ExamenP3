@@ -33,6 +33,7 @@ private:
     void moverZombie();
     bool isMonsterVisible(sf::Sprite monster);
     void drawExteriorWalls();
+    void drawInteriorWalls(vector<Barrier>Hitboxes);
     void shoot();
     void updateBullets();
     bool isBulletIntersectLine(const sf::Vector2f& point, const Line& wall);

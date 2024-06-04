@@ -37,7 +37,8 @@ Game::Game()
     walls[8].setPos(0,0,0,HEIGHT);
     walls[9].setPos(WIDTH,0,0,0);
 
-    Barrier pared1();
+    Barrier pared1(190,110,0,490,"pared_1.png");
+    HitBoxes.push_back(pared1);
 
 
 
@@ -107,6 +108,8 @@ void Game::Draw()
             walls[j].show(window);
 
     drawExteriorWalls();
+    drawInteriorWalls(HitBoxes);
+    
     //Draw
     if(isMonsterVisible(fantasmaSprite))
     {
@@ -149,6 +152,8 @@ void Game::Update()
     Draw();
     
 }
+
+
 
 void Game::moverFantasma() //Movimiento aleatorio
 {
@@ -248,6 +253,12 @@ void Game::drawExteriorWalls()
         paredExteriorSprite.setPosition(0,0);
         this->window->draw(paredExteriorSprite);
 
+}
+
+void Game::drawInteriorWalls(vector<Barrier>Hitboxes)
+{
+    for(int i=0;i<HitBoxes.size();i++)
+    this->window->draw(HitBoxes[i].spared);
 }
 
 void Game::shoot()
