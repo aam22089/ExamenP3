@@ -5,7 +5,6 @@ using namespace std;
 float distanciaMovimientoFantasma = 3.5f;
 float distanciaMovimientoZombie = 4.5f;
 
-Rectangle rect(Vector2f(30,30));
 
 
 Game::Game()
@@ -87,6 +86,7 @@ void Game::EventUpdate()
                     this->window->close();
                 break;
                     case sf::Event::MouseButtonPressed:
+                    if (this->event.mouseButton.button == sf::Mouse::Left)  
                     shoot();
                 break;
             default:
@@ -119,9 +119,9 @@ void Game::Draw()
         this->zombieSprite.move(.1,.1);
     }
 
-    for(auto &rect : rectangles)
+    for (const auto &bullet : bullets)
     {
-        rect.drawTo(*window);
+        this->window->draw(bullet);
     }
 
     window->setView(window->getDefaultView());
@@ -140,11 +140,7 @@ void Game::Update()
     Logic();
     moverFantasma();
     moverZombie();
-
-    for(auto& rect : rectangles)
-    {
-        rect.update();
-    }
+    updateBullets();
 
     //
 
@@ -274,12 +270,32 @@ void Game::drawExteriorWalls()
 
 void Game::shoot()
 {
-        int x = event.mouseButton.x;
-        int y = event.mouseButton.y;
-        Rectangle newRect(Vector2f(30, 30));
-        newRect.setObjective(Vector2f(x,y));
-        newRect.setPosition(player.pos);
-        rectangles.push_back(newRect);
+    sf::RectangleShape bullet;
+    bullet.setSize(sf::Vector2f(10, 5)); // Tamaño de la bala
+    bullet.setFillColor(sf::Color::Red); // Color de la bala
+    bullet.setPosition(player.pos); // Posición inicial de la bala
+
+    // Obtener la dirección del rayo central
+    sf::Vertex centralRayStart = player.lines[LINES_COUNT / 2].L[0];
+    sf::Vertex centralRayEnd = player.lines[LINES_COUNT / 2].L[1];
+
+    sf::Vector2f direction = centralRayEnd.position - centralRayStart.position;
+    float magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    if (magnitude != 0)
+    {
+        direction /= magnitude; // Normalizar la dirección
+    }
+    bulletDirections.push_back(direction);
+
+    bullets.push_back(bullet);
+}
+
+void Game::updateBullets()
+{
+    for (size_t i = 0; i < bullets.size(); i++)
+    {
+        bullets[i].move(bulletDirections[i] * 10.0f); // Mover la bala en su dirección
+    }
 }
 
 void Game::Logic()
