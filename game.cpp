@@ -65,7 +65,7 @@ Game::Game()
         cout << "Error al cargar la imagen" << endl;
     }
     paredExteriorSprite.setTexture(paredExteriorTexture);
-    paredExteriorSprite.setTextureRect(IntRect(0, 0, 128, 128));
+    paredExteriorSprite.setTextureRect(IntRect(0, 0, 1920, 1080));
     //paredExteriorSprite.setPosition(WIDTH/4, HEIGHT/4);
 }
 
@@ -165,17 +165,17 @@ void Game::moverFantasma() //Movimiento aleatorio
 
     sf::Vector2f nuevaPosicion = fantasmaSprite.getPosition() + movimiento; // Calcula nueva direccion del fantasma
 
-    if (nuevaPosicion.x > 0 && nuevaPosicion.x + fantasmaSprite.getGlobalBounds().width < WIDTH-1 && // Este if verifica que el fantasma este dentro del mapa
-        nuevaPosicion.y > 0 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height < HEIGHT-1)
+    if (nuevaPosicion.x > 10 && nuevaPosicion.x + fantasmaSprite.getGlobalBounds().width < WIDTH-10 && // Este if verifica que el fantasma este dentro del mapa
+        nuevaPosicion.y > 10 && nuevaPosicion.y + fantasmaSprite.getGlobalBounds().height < HEIGHT-10)
     {
         fantasmaSprite.move(movimiento);
     } else 
     {
-        if(nuevaPosicion.y > 1 && nuevaPosicion.y + fantasmaSprite.getLocalBounds().height > HEIGHT-2)
-        fantasmaSprite.setPosition(fantasmaSprite.getPosition().x, fantasmaSprite.getPosition().y-5);
+        if(nuevaPosicion.y > 10 && nuevaPosicion.y + fantasmaSprite.getLocalBounds().height > HEIGHT-10)
+        fantasmaSprite.setPosition(fantasmaSprite.getPosition().x, fantasmaSprite.getPosition().y-12);
 
-        if(nuevaPosicion.x > 1 && nuevaPosicion.x + fantasmaSprite.getLocalBounds().width > WIDTH-2)
-        fantasmaSprite.setPosition(fantasmaSprite.getPosition().x-5, fantasmaSprite.getPosition().y);
+        if(nuevaPosicion.x > 10 && nuevaPosicion.x + fantasmaSprite.getLocalBounds().width > WIDTH-10)
+        fantasmaSprite.setPosition(fantasmaSprite.getPosition().x-12, fantasmaSprite.getPosition().y);
     }
 }
 
@@ -195,17 +195,17 @@ void Game::moverZombie()
 
 
 
-    if (nuevaPosicion.x > 1 && nuevaPosicion.x + zombieSprite.getLocalBounds().width < WIDTH-2 && // Este if verifica que el zombie este dentro del mapa
-        nuevaPosicion.y > 1 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-2)
+    if (nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width < WIDTH-10 && // Este if verifica que el zombie este dentro del mapa
+        nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-10)
     {
         zombieSprite.move(movimiento);
     }else 
     {
-        if(nuevaPosicion.y > 1 && nuevaPosicion.y + zombieSprite.getLocalBounds().height > HEIGHT-2)
-        zombieSprite.setPosition(zombieSprite.getPosition().x, zombieSprite.getPosition().y-4);
+        if(nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height > HEIGHT-10)
+        zombieSprite.setPosition(zombieSprite.getPosition().x, zombieSprite.getPosition().y-12);
 
-        if(nuevaPosicion.x > 1 && nuevaPosicion.x + zombieSprite.getLocalBounds().width > WIDTH-2)
-        zombieSprite.setPosition(zombieSprite.getPosition().x-4, zombieSprite.getPosition().y);
+        if(nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width > WIDTH-10)
+        zombieSprite.setPosition(zombieSprite.getPosition().x-12, zombieSprite.getPosition().y);
     }
 
 }
@@ -245,29 +245,9 @@ bool Game::isMonsterVisible(sf::Sprite monster)
 
 void Game::drawExteriorWalls()
 {
-    for(int i = 0; i < WIDTH; i += paredExteriorSprite.getGlobalBounds().width)
-    {
-        paredExteriorSprite.setPosition(i,0);
+        paredExteriorSprite.setPosition(0,0);
         this->window->draw(paredExteriorSprite);
-    }
 
-    for(int i = 0; i < WIDTH; i += paredExteriorSprite.getGlobalBounds().width)
-    {
-        paredExteriorSprite.setPosition(i,HEIGHT - paredExteriorSprite.getGlobalBounds().height);
-        this->window->draw(paredExteriorSprite);
-    }
-
-    for(int i = 0; i < HEIGHT; i += paredExteriorSprite.getGlobalBounds().height)
-    {
-        paredExteriorSprite.setPosition(0,i);
-        this->window->draw(paredExteriorSprite);
-    }
-
-    for(int i = 0; i < HEIGHT; i += paredExteriorSprite.getGlobalBounds().height)
-    {
-        paredExteriorSprite.setPosition(WIDTH - paredExteriorSprite.getGlobalBounds().width, i);
-        window->draw(paredExteriorSprite);
-    }
 }
 
 void Game::shoot()
