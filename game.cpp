@@ -292,10 +292,47 @@ void Game::shoot()
 
 void Game::updateBullets()
 {
-    for (size_t i = 0; i < bullets.size(); i++)
+    
+    for (size_t i = 0; i < bullets.size(); ++i)
     {
+        Vector2f startPoint = walls[i].getStartPoint();
+        Vector2f endPoint = walls[i].getEndPoint();
+
         bullets[i].move(bulletDirections[i] * 10.0f); // Mover la bala en su dirección
+
+        // Verificar colisión con las paredes delimitantes del mapa
+        if (bullets[i].getPosition().x < 0 || bullets[i].getPosition().x > WIDTH ||
+            bullets[i].getPosition().y < 0 || bullets[i].getPosition().y > HEIGHT)
+        {
+            // Eliminar la bala
+            bullets.erase(bullets.begin() + i);
+            bulletDirections.erase(bulletDirections.begin() + i);
+            break; 
+        }
+
+        // Verificar colisión con las paredes dentro del mapa
+        for (int j = 0; j < WALL_COUNT; ++j)
+        {
+            if (isBulletIntersectLine(bullets[i].getPosition(), walls[j]))
+            {
+                // Eliminar la bala si choca con una pared interna
+                bullets.erase(bullets.begin() + i);
+                bulletDirections.erase(bulletDirections.begin() + i);
+                break;
+            }
+        }
     }
+}
+
+bool Game::isBulletIntersectLine(const sf::Vector2f &point, const Line &wall)
+{
+    if (point.x >= wall.getStartPoint().x && point.x <= wall.getEndPoint().x &&
+        point.y >= std::min(wall.getStartPoint().y, wall.getEndPoint().y) &&
+        point.y <= std::max(wall.getStartPoint().y, wall.getEndPoint().y))
+    {
+        return true;
+    }
+    return false;
 }
 
 void Game::Logic()

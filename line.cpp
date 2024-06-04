@@ -56,3 +56,13 @@ void Line::setAlpha(uint8_t a)
     this->L[0].color = sf::Color(204,255,153,a);
     this->L[1].color = sf::Color(204,255,153,a);
 }
+
+sf::Vector2f Line::getStartPoint() const
+{
+    return sf::Vector2f(startX, startY);
+}
+
+sf::Vector2f Line::getEndPoint() const
+{
+    return sf::Vector2f(endX, endY);
+}
