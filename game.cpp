@@ -315,11 +315,27 @@ void Game::updateBullets()
         {
             if (isBulletIntersectLine(bullets[i].getPosition(), walls[j]))
             {
-                // Eliminar la bala si choca con una pared interna
+                // Eliminar la bala si choca con una pared interna. Esto no sirve aun
                 bullets.erase(bullets.begin() + i);
                 bulletDirections.erase(bulletDirections.begin() + i);
                 break;
             }
+        }
+
+        // Eliminar bala si choca con el fantasma
+        if (bullets[i].getGlobalBounds().intersects(fantasmaSprite.getGlobalBounds()))
+        {
+            bullets.erase(bullets.begin() + i);
+            bulletDirections.erase(bulletDirections.begin() + i);
+            break;
+        }
+
+        // Eliminar bala si choca con el zombie
+        if (bullets[i].getGlobalBounds().intersects(zombieSprite.getGlobalBounds()))
+        {
+            bullets.erase(bullets.begin() + i);
+            bulletDirections.erase(bulletDirections.begin() + i);
+            break;
         }
     }
 }
