@@ -258,7 +258,7 @@ void Game::drawExteriorWalls()
 void Game::drawInteriorWalls(vector<Barrier>Hitboxes)
 {
     for(int i=0;i<HitBoxes.size();i++)
-    this->window->draw(HitBoxes[i].spared);
+    this->window->draw(HitBoxes[0].spared);
 }
 
 void Game::shoot()
