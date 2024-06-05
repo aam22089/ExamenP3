@@ -378,17 +378,6 @@ void Game::updateBullets()
     }
 }
 
-bool Game::isBulletIntersectLine(const sf::Vector2f &point, const Line &wall)
-{
-    if (point.x >= wall.getStartPoint().x && point.x <= wall.getEndPoint().x &&
-        point.y >= std::min(wall.getStartPoint().y, wall.getEndPoint().y) &&
-        point.y <= std::max(wall.getStartPoint().y, wall.getEndPoint().y))
-    {
-        return true;
-    }
-    return false;
-}
-
 void Game::Logic()
 {
     bool in=false;

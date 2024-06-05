@@ -36,7 +36,6 @@ private:
     void drawInteriorWalls();
     void shoot();
     void updateBullets();
-    bool isBulletIntersectLine(const sf::Vector2f& point, const Line& wall);
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
