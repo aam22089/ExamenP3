@@ -205,11 +205,11 @@ void Game::Update()
     //
 
     Draw();
-    if (getDistance(player.pos.x,player.pos.y,zombieSprite.getPosition().x,zombieSprite.getPosition().y) < 10|| 
-getDistance(player.pos.x,player.pos.y,fantasmaSprite.getPosition().x,fantasmaSprite.getPosition().y)<10)
-{window->draw(gameOver());
+   // if (getDistance(player.pos.x,player.pos.y,zombieSprite.getPosition().x,zombieSprite.getPosition().y) < 10|| 
+//getDistance(player.pos.x,player.pos.y,fantasmaSprite.getPosition().x,fantasmaSprite.getPosition().y)<10)
+//{window->draw(gameOver());
 
-}
+//}
     
 }
 
@@ -454,7 +454,9 @@ Sprite Game::gameOver()
     gameoversprite.setTexture(gameovertexture);
     gameoversprite.setPosition(0,0);
     gameoversprite.setTextureRect(IntRect(0,0,1920,1080));
-return gameoversprite;
+ 
+    window->draw(gameoversprite);
+    return gameoversprite;
 }
 
 void Game::Logic()
