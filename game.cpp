@@ -374,6 +374,23 @@ void Game::updateBullets()
             bulletDirections.erase(bulletDirections.begin() + i);
             break;
         }
+
+        // Verificar colisión con las paredes interiores del mapa
+        bool bulletErased = false;
+        for (const auto& hitbox : HitBoxes)
+        {
+            if (bullets[i].getGlobalBounds().intersects(hitbox.Hitbox.getGlobalBounds()))
+            {
+                bullets.erase(bullets.begin() + i);
+                bulletDirections.erase(bulletDirections.begin() + i);
+                bulletErased = true;
+                break;
+            }
+        }
+        
+        if (bulletErased) {
+            break;
+        }
     }
 }
 
