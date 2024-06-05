@@ -161,16 +161,19 @@ void Game::EventUpdate()
 
 void Game::Draw()
 {
+
     this->window->clear();
+
     //Draw
     this->window->setView(this->view);
+    window->draw(pisosprite);
+
         this->player.show(window);
         for(int j = 0; j<walls.size(); j++)
            { walls[j].show(window);
            walls[j].L[0].color=Color::Black;
            walls[j].L[1].color=Color::Black;}
 
-    window->draw(pisosprite);
 
     drawInteriorWalls();
     drawExteriorWalls();
