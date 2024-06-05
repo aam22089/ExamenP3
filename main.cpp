@@ -1,39 +1,65 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "bolita.hpp"
+#include "game.hpp"
 using namespace std;
 using namespace sf;
 
+void menu(Text &Play, Text &Exit, Font font)
+{
 
-
-int main() {
+    Play.setFont(font);
+    Exit.setFont(font);
+    Play.setString("Play");
+    Exit.setString("Exit");
+    Play.setFillColor(Color::White);
+    Exit.setFillColor(Color::White);
+}
+int main()
+{
+   /* Font font;
+    if (!font.loadFromFile("alagard.ttf"))
+        cout << "Error";
+    Text Play;
+    Text Exit;*/
     RenderWindow window(VideoMode(450, 400), "SFML works!");
     window.setFramerateLimit(60);
 
-    Bolita bolita(200.f, 200.f, 2.f);
-    CircleShape shape(10.f);
-    shape.setFillColor(Color::Red);
-
-    while (window.isOpen()) {
+    while (window.isOpen())
+    {
         Event event;
-        while (window.pollEvent(event)) {
+        while (window.pollEvent(event))
+        {
             if (event.type == Event::Closed)
                 window.close();
+
+            Game game;
+            game.Gameloop();
+
+          /**  menu(Play, Exit, font);
+            if (event.type == Event::KeyPressed)
+            {
+                if (Event::KeyPressed == Keyboard::W)
+                {
+                    Play.setOutlineColor(Color::Green);
+                    Exit.setOutlineColor(Color::Black);
+                    if (Event::KeyPressed == Keyboard::Enter)
+                        game.Gameloop();
+                }
+
+                if (Event::KeyPressed == Keyboard::S)
+                {
+                    Play.setOutlineColor(Color::Black);
+                    Exit.setOutlineColor(Color::Green);
+                    if (Event::KeyPressed == Keyboard::Enter)
+                        window.close();
+                }
+            } */
+
+            return 0;
         }
 
-        if (Keyboard::isKeyPressed(Keyboard::Left))
-            bolita.mover(-1.f, 0.f);
-        if (Keyboard::isKeyPressed(Keyboard::Right))
-            bolita.mover(1.f, 0.f);
-        if (Keyboard::isKeyPressed(Keyboard::Up))
-            bolita.mover(0.f, -1.f);
-        if (Keyboard::isKeyPressed(Keyboard::Down))
-            bolita.mover(0.f, 1.f);
-
-        shape.setPosition(bolita.getX(), bolita.getY());
-
         window.clear();
-        window.draw(shape);
+        // window.draw(fantasma);
         window.display();
     }
 
