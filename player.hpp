@@ -14,6 +14,7 @@ public:
     sf::Vector2f getLinePoint1(int);
     sf::Vector2f getLinePoint2(int);
     void update(sf::RenderWindow *window);
+    bool alive;
 
 private:
     sf::Vector2f pos;

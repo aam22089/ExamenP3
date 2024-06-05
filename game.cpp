@@ -250,11 +250,10 @@ void Game::moverZombie()
 
     sf::Vector2f nuevaPosicion = zombieSprite.getPosition() + movimiento; // Calcula nueva direccion del zombie
 bool isCollide;
-for(int i=0;i<HitBoxes.size();i++)
+for (int i=0;i<HitBoxes.size();i++)
 {
-if( nuevaPosicion.x>HitBoxes[i].Hitbox.getPosition().x+HitBoxes[i].Hitbox.getGlobalBounds().width && nuevaPosicion.y>HitBoxes[i].Hitbox.getPosition().y + HitBoxes[i].Hitbox.getGlobalBounds().height 
-|| nuevaPosicion.y + zombieSprite.getGlobalBounds().height<HitBoxes[i].Hitbox.getPosition().y  && nuevaPosicion.x + zombieSprite.getGlobalBounds().width<HitBoxes[i].Hitbox.getPosition().x)
-isCollide=false;
+    if (HitBoxes[i].isIntersect(zombieSprite,nuevaPosicion))
+    isCollide=true;
 }
 
     if (nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width < WIDTH-10 && // Este if verifica que el zombie este dentro del mapa
