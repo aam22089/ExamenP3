@@ -36,6 +36,8 @@ private:
     void drawInteriorWalls();
     void shoot();
     void updateBullets();
+    void mostrarpuntos();
+ 
     Sprite gameOver();
 
 private:
@@ -55,6 +57,9 @@ private:
 
     Texture paredesInterioresT;
     Sprite paredesInterioresS;
+
+    Font font;
+    Text puntos;
 
 Texture pisotexture;
 Sprite pisosprite;
