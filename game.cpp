@@ -208,7 +208,7 @@ void Game::Update()
 
    //UPDATES:
     player.update(window);
-    player.move();
+    player.move(HitBoxes);
     view.setCenter(camera.x/2,camera.y/2);
     view.reset(sf::FloatRect(player.pos.x-camera.x/2,player.pos.y-camera.y/2,camera.x,camera.y));
     Logic();
@@ -220,8 +220,8 @@ void Game::Update()
     //
 
     Draw();
-    if (getDistance(player.pos.x,player.pos.y,zombieSprite.getPosition().x,zombieSprite.getPosition().y) < 10|| 
-getDistance(player.pos.x,player.pos.y,fantasmaSprite.getPosition().x,fantasmaSprite.getPosition().y)<10){window->draw(gameOver());
+    if (getDistance(player.pos.x,player.pos.y,zombieSprite.getPosition().x,zombieSprite.getPosition().y) < 5|| 
+getDistance(player.pos.x,player.pos.y,fantasmaSprite.getPosition().x,fantasmaSprite.getPosition().y)<5){window->draw(gameOver());
 
 }
     

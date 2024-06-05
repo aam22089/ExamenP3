@@ -27,34 +27,39 @@ void Player::show(sf::RenderWindow *window)
     }
 }
 
-void Player::move()
+void Player::move(vector<Barrier>HitBoxes)
 {
 
     bool isCollide = false;
 
-    for (const auto& hitbox : HitBoxes)
+  /** for (const auto& hitbox : HitBoxes)
     {
-        if (zombieSprite.getGlobalBounds().intersects(hitbox.Hitbox.getGlobalBounds()))
+        if (this->circle->getGlobalBounds().intersects(hitbox.Hitbox.getGlobalBounds()))
         {
             isCollide = true;
             break;
         }
-    }
+    } */
     
     //this->pos = sf::Vector2f(sf::Mouse::getPosition((*window)).x, sf::Mouse::getPosition((*window)).y);
     float speed = 5;
     this->circle->setPosition(this->pos);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && this->pos.y>0)
-        this->pos.y-=speed;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W) && this->pos.y>50 && !isCollide)
+        {this->pos.y-=speed;}
+    else if (isCollide){this->pos.y+=speed;}
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && this->pos.y<HEIGHT-50)
-        this->pos.y+=speed;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S) && this->pos.y<HEIGHT-50 &&!isCollide)
+        {this->pos.y+=speed;}
+    else if (isCollide) {this->pos.y-=speed;}
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && this->pos.x>0)
-        this->pos.x-=speed;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && this->pos.x>50 &&!isCollide)
+        {this->pos.x-=speed;}
+    else if (isCollide){this->pos.x+=speed;}
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && this->pos.x<WIDTH-50)
-        this->pos.x+=speed;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && this->pos.x<WIDTH-50 &&!isCollide)
+        {this->pos.x+=speed;}
+    else if(isCollide){this->pos.x-=speed;}
+
 
 }
 
