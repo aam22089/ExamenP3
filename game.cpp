@@ -310,7 +310,6 @@ void Game::moverZombie()
             }
         }
 
-        // dirección a la que debe moverse el zombie para rodear la pared
         direccionRodear = centroZombie - centroPared;
         direccionRodear /= std::sqrt(direccionRodear.x * direccionRodear.x + direccionRodear.y * direccionRodear.y); // Normalizar
 
@@ -380,7 +379,7 @@ void Game::shoot()
     float magnitude = std::sqrt(direction.x * direction.x + direction.y * direction.y);
     if (magnitude != 0)
     {
-        direction /= magnitude; // Normalizar la dirección
+        direction /= magnitude; 
     }
     bulletDirections.push_back(direction);
 
