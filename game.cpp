@@ -108,7 +108,7 @@ void Game::Draw()
             walls[j].show(window);
 
     drawExteriorWalls();
-    drawInteriorWalls(HitBoxes);
+    drawInteriorWalls();
     
     //Draw
     if(isMonsterVisible(fantasmaSprite))
