@@ -208,11 +208,10 @@ void Game::Update()
     //
 
     Draw();
-   // if (getDistance(player.pos.x,player.pos.y,zombieSprite.getPosition().x,zombieSprite.getPosition().y) < 10|| 
-//getDistance(player.pos.x,player.pos.y,fantasmaSprite.getPosition().x,fantasmaSprite.getPosition().y)<10)
-//{window->draw(gameOver());
+    if (getDistance(player.pos.x,player.pos.y,zombieSprite.getPosition().x,zombieSprite.getPosition().y) < 10|| 
+getDistance(player.pos.x,player.pos.y,fantasmaSprite.getPosition().x,fantasmaSprite.getPosition().y)<10){window->draw(gameOver());
 
-//}
+}
     
 }
 
