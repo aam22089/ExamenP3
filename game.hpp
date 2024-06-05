@@ -4,7 +4,7 @@
 #include "barrier.hpp"
 #include <cstdlib>
 #include <ctime>
-#define WALL_COUNT 10
+#define WALL_COUNT 40
 using namespace std;
 using namespace sf;
 

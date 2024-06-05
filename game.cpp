@@ -20,22 +20,47 @@ Game::Game()
     view.setViewport(sf::FloatRect(0.f,0.f,0.3f,0.3f));
     view.setViewport(sf::FloatRect(0.f,0.f,1.f,1.f));
 
+Barrier pared1(190,110,0,490);
+Barrier pared2(460,110,470,490);
+Barrier pared3(100,140,930,0);
 
     for(int i = 0; i < WALL_COUNT; i++)
     {
         Line l;
         walls.push_back(l);
     }
-    walls[0].setPos(300,60,500,300);
-    walls[1].setPos(1200,700,700,800);
-    walls[2].setPos(1500,300,1300,700);
-    walls[3].setPos(1500,300,1900,300);
-    walls[4].setPos(1900,300,1300,700);
-    walls[5].setPos(1000,500,1000,300);
-    walls[6].setPos(0,HEIGHT,WIDTH,HEIGHT);
-    walls[7].setPos(WIDTH,HEIGHT,WIDTH,0);
-    walls[8].setPos(0,0,0,HEIGHT);
-    walls[9].setPos(WIDTH,0,0,0);
+    walls[0].setPos(0,490,190,490);
+    walls[1].setPos(190,490,190,600);
+    walls[2].setPos(190,600,0,600);
+    walls[3].setPos(470,490,930,490);
+    walls[4].setPos(930,490,930,275);
+    walls[5].setPos(930,275,1030,275);
+    walls[6].setPos(1030,275,1030,600);
+    walls[7].setPos(1030,600,470,600);
+    walls[8].setPos(470,600,470,490);
+    walls[9].setPos(930,0,930,140);
+    walls[10].setPos(930,140,1030,140);
+    walls[11].setPos(1030,140,1030,0);
+    walls[12].setPos(180,870,1260,870);
+    walls[13].setPos(1260,870,1260,920);
+    walls[14].setPos(1260,920,180,920);
+    walls[15].setPos(180,920,180,870);
+    walls[16].setPos(1460,HEIGHT,1460,860);
+    walls[17].setPos(1460,860,1515,860);
+    walls[18].setPos(1515,860,1515,HEIGHT);
+    walls[19].setPos(1460,270,1675,270);
+    walls[20].setPos(1675,270,1675,320);
+    walls[21].setPos(1675,320,1515,320);
+    walls[22].setPos(1515,320,1515,700);
+    walls[23].setPos(1515,700,1460,700);
+    walls[24].setPos(1460,700,1460,270);
+    walls[25].setPos(WIDTH,270,1790,270);
+    walls[26].setPos(1790,270,1790,320);
+    walls[27].setPos(1790,320, WIDTH,320);
+    walls[28].setPos(0,HEIGHT,WIDTH,HEIGHT);
+    walls[29].setPos(WIDTH,HEIGHT,WIDTH,0);
+    walls[30].setPos(0,0,0,HEIGHT);
+    walls[31].setPos(WIDTH,0,0,0);
 
 if(!paredesInterioresT.loadFromFile("ParedesInternas.png"))
 cout << "Error al cargar la imagen"<< endl;
