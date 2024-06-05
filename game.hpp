@@ -33,7 +33,7 @@ private:
     void moverZombie();
     bool isMonsterVisible(sf::Sprite monster);
     void drawExteriorWalls();
-    void drawInteriorWalls(vector<Barrier>Hitboxes);
+    void drawInteriorWalls();
     void shoot();
     void updateBullets();
     bool isBulletIntersectLine(const sf::Vector2f& point, const Line& wall);
@@ -52,6 +52,9 @@ private:
 
     Texture paredExteriorTexture;
     Sprite paredExteriorSprite;
+
+    Texture paredesInterioresT;
+    Sprite paredesInterioresS;
 
     const float MOVE_DISTANCE = 5.0f; // Distancia de movimiento del fantasma
 

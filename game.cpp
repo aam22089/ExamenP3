@@ -37,11 +37,11 @@ Game::Game()
     walls[8].setPos(0,0,0,HEIGHT);
     walls[9].setPos(WIDTH,0,0,0);
 
-    Barrier pared1(190,110,0,490,"pared_1.png");
-    HitBoxes.push_back(pared1);
-
-
-
+if(!paredesInterioresT.loadFromFile("ParedesInternas.png"))
+cout << "Error al cargar la imagen"<< endl;
+paredesInterioresS.setTexture(paredesInterioresT);
+paredesInterioresS.setTextureRect(IntRect(0,0,1920,1080));
+paredesInterioresS.setPosition(0,0);
 
     if (!fantasmaTexture.loadFromFile("fantasma_1.png"))
     {
@@ -255,10 +255,10 @@ void Game::drawExteriorWalls()
 
 }
 
-void Game::drawInteriorWalls(vector<Barrier>Hitboxes)
+void Game::drawInteriorWalls()
 {
-    for(int i=0;i<HitBoxes.size();i++)
-    this->window->draw(HitBoxes[0].spared);
+    paredesInterioresS.setPosition(0,0);
+    this->window->draw(paredesInterioresS);
 }
 
 void Game::shoot()
