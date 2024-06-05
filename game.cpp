@@ -5,6 +5,9 @@ using namespace std;
 float distanciaMovimientoFantasma = 2.5f;
 float distanciaMovimientoZombie = 3.5f;
 
+float aumentoVelocidadZ = 0.0;
+float aumentoVelocidadF = 0.0;
+
 int fantasmaHits, zombieHits;
 
 
@@ -406,6 +409,8 @@ void Game::updateBullets()
             {
                 fantasmaHits = 0;
                 fantasmaSprite.setPosition(WIDTH/2, HEIGHT/2);
+                aumentoVelocidadF += 0.5;
+                distanciaMovimientoFantasma += aumentoVelocidadF;
             }
             break;
         }
@@ -422,6 +427,8 @@ void Game::updateBullets()
             {
                 zombieHits = 0;
                 zombieSprite.setPosition(WIDTH/2, HEIGHT/2);
+                aumentoVelocidadZ += 0.5;
+                distanciaMovimientoZombie += aumentoVelocidadZ;
             }
             break;
         }
