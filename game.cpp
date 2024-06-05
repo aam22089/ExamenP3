@@ -170,9 +170,10 @@ void Game::Draw()
            walls[j].L[0].color=Color::Black;
            walls[j].L[1].color=Color::Black;}
 
+    window->draw(pisosprite);
+
     drawInteriorWalls();
     drawExteriorWalls();
-    window->draw(pisosprite);
     
     //Draw
     if(fantasmaHits < 10 && isMonsterVisible(fantasmaSprite))
