@@ -5,6 +5,7 @@ using namespace std;
 float distanciaMovimientoFantasma = 2.5f;
 float distanciaMovimientoZombie = 3.5f;
 
+int fantasmaHits, zombieHits;
 
 
 Game::Game()
@@ -163,14 +164,14 @@ void Game::Draw()
     drawExteriorWalls();
     
     //Draw
-    if(isMonsterVisible(fantasmaSprite))
+    if(fantasmaHits < 10 && isMonsterVisible(fantasmaSprite))
     {
         cout << "visible"  << endl;
         this->window->draw(fantasmaSprite);
         this->fantasmaSprite.move(.05,.05);
     }
     
-    if(isMonsterVisible(zombieSprite))
+    if(zombieHits < 10 && isMonsterVisible(zombieSprite))
     {
         this->window->draw(zombieSprite);
         this->zombieSprite.move(.1,.1);
@@ -374,6 +375,7 @@ void Game::shoot()
 
 void Game::updateBullets()
 {
+
     
     for (size_t i = 0; i < bullets.size(); ++i)
     {
@@ -397,6 +399,14 @@ void Game::updateBullets()
         {
             bullets.erase(bullets.begin() + i);
             bulletDirections.erase(bulletDirections.begin() + i);
+
+            fantasmaHits++;
+
+            if(fantasmaHits >= 10)
+            {
+                fantasmaHits = 0;
+                fantasmaSprite.setPosition(-1000, -1000);
+            }
             break;
         }
 
@@ -405,6 +415,14 @@ void Game::updateBullets()
         {
             bullets.erase(bullets.begin() + i);
             bulletDirections.erase(bulletDirections.begin() + i);
+
+            zombieHits++;
+
+            if(zombieHits >= 10)
+            {
+                zombieHits = 0;
+                zombieSprite.setPosition(-1000, -1000);
+            }
             break;
         }
 
