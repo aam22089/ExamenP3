@@ -256,25 +256,51 @@ void Game::moverZombie()
     sf::Vector2f movimiento = direccion * distanciaMovimientoZombie;
 
     sf::Vector2f nuevaPosicion = zombieSprite.getPosition() + movimiento; // Calcula nueva direccion del zombie
-bool isCollide;
-for (int i=0;i<HitBoxes.size();i++)
-{
-    if (HitBoxes[i].isIntersect(zombieSprite,nuevaPosicion))
-    isCollide=true;
-}
+    
+    bool isCollide = false;
 
-    if (nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width < WIDTH-10 && // Este if verifica que el zombie este dentro del mapa
-        nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-10 && isCollide==false)
+    for (const auto& hitbox : HitBoxes)
     {
-        zombieSprite.move(movimiento);
-    }else 
-    {
-        if(nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height > HEIGHT-10)
-        zombieSprite.setPosition(zombieSprite.getPosition().x, zombieSprite.getPosition().y-12);
-
-        if(nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width > WIDTH-10)
-        zombieSprite.setPosition(zombieSprite.getPosition().x-12, zombieSprite.getPosition().y);
+        if (zombieSprite.getGlobalBounds().intersects(hitbox.Hitbox.getGlobalBounds()))
+        {
+            isCollide = true;
+            break;
+        }
     }
+
+    if (isCollide)
+    {
+        // posición central del zombie
+        sf::Vector2f centroZombie = zombieSprite.getPosition() + sf::Vector2f(zombieSprite.getLocalBounds().width / 2, zombieSprite.getLocalBounds().height / 2);
+
+        // dirección a la que debe moverse el zombie para rodear la pared
+        sf::Vector2f direccionRodear;
+
+        // centro de la pared más cercana
+        sf::Vector2f centroPared;
+        float distanciaMinima = std::numeric_limits<float>::max();
+
+        for (const auto& hitbox : HitBoxes)
+        {
+            sf::Vector2f centroActual = hitbox.Hitbox.getPosition() + sf::Vector2f(hitbox.Hitbox.getLocalBounds().width / 2, hitbox.Hitbox.getLocalBounds().height / 2);
+            float distancia = getDistance(centroZombie.x, centroZombie.y, centroActual.x, centroActual.y);
+            
+            if (distancia < distanciaMinima)
+            {
+                distanciaMinima = distancia;
+                centroPared = centroActual;
+            }
+        }
+
+        // dirección a la que debe moverse el zombie para rodear la pared
+        direccionRodear = centroZombie - centroPared;
+        direccionRodear /= std::sqrt(direccionRodear.x * direccionRodear.x + direccionRodear.y * direccionRodear.y); // Normalizar
+
+        movimiento = direccionRodear * distanciaMovimientoZombie;
+    }
+
+    zombieSprite.move(movimiento);
+
 
 }
 
