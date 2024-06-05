@@ -462,6 +462,7 @@ Sprite Game::gameOver()
     gameoversprite.setTextureRect(IntRect(0,0,1920,1080));
  
     window->draw(gameoversprite);
+    window->close();
     return gameoversprite;
 }
 
