@@ -155,7 +155,9 @@ void Game::Draw()
     this->window->setView(this->view);
         this->player.show(window);
         for(int j = 0; j<walls.size(); j++)
-            walls[j].show(window);
+           { walls[j].show(window);
+           walls[j].L[0].color=Color::Black;
+           walls[j].L[1].color=Color::Black;}
 
     drawExteriorWalls();
     drawInteriorWalls();
@@ -247,11 +249,16 @@ void Game::moverZombie()
     sf::Vector2f movimiento = direccion * distanciaMovimientoZombie;
 
     sf::Vector2f nuevaPosicion = zombieSprite.getPosition() + movimiento; // Calcula nueva direccion del zombie
-
-
+bool isCollide;
+for(int i=0;i<HitBoxes.size();i++)
+{
+if( nuevaPosicion.x>HitBoxes[i].Hitbox.getPosition().x+HitBoxes[i].Hitbox.getGlobalBounds().width && nuevaPosicion.y>HitBoxes[i].Hitbox.getPosition().y + HitBoxes[i].Hitbox.getGlobalBounds().height 
+|| nuevaPosicion.y + zombieSprite.getGlobalBounds().height<HitBoxes[i].Hitbox.getPosition().y  && nuevaPosicion.x + zombieSprite.getGlobalBounds().width<HitBoxes[i].Hitbox.getPosition().x)
+isCollide=false;
+}
 
     if (nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width < WIDTH-10 && // Este if verifica que el zombie este dentro del mapa
-        nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-10)
+        nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-10 && isCollide==false)
     {
         zombieSprite.move(movimiento);
     }else 

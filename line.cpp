@@ -9,8 +9,8 @@ Line::Line(float _x1, float _y1, float _x2, float _y2)
     this->L.append(this->point1);
     this->L.append(this->point2);
 
-    this->L[0].color = sf::Color(204,255,153,255);
-    this->L[1].color = sf::Color(204,255,153,255);
+    this->L[0].color = sf::Color::Black;
+    this->L[1].color = sf::Color::Black;
 
     this->isIntersects=false;
 }
