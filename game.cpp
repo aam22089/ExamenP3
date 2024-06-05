@@ -294,19 +294,6 @@ void Game::moverZombie()
 
     zombieSprite.move(movimiento);
 
-    
-    /*if (nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width < WIDTH-10 && // Este if verifica que el zombie este dentro del mapa
-        nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height < HEIGHT-10 && isCollide==false)
-    {
-        zombieSprite.move(movimiento);
-    }else 
-    {
-        if(nuevaPosicion.y > 10 && nuevaPosicion.y + zombieSprite.getLocalBounds().height > HEIGHT-10)
-        zombieSprite.setPosition(zombieSprite.getPosition().x, zombieSprite.getPosition().y-12);
-
-        if(nuevaPosicion.x > 10 && nuevaPosicion.x + zombieSprite.getLocalBounds().width > WIDTH-10)
-        zombieSprite.setPosition(zombieSprite.getPosition().x-12, zombieSprite.getPosition().y);
-    }*/
 
 }
 
