@@ -405,7 +405,7 @@ void Game::updateBullets()
             if(fantasmaHits >= 10)
             {
                 fantasmaHits = 0;
-                fantasmaSprite.setPosition(-1000, -1000);
+                fantasmaSprite.setPosition(WIDTH/2, HEIGHT/2);
             }
             break;
         }
@@ -421,7 +421,7 @@ void Game::updateBullets()
             if(zombieHits >= 10)
             {
                 zombieHits = 0;
-                zombieSprite.setPosition(-1000, -1000);
+                zombieSprite.setPosition(WIDTH/2, HEIGHT/2);
             }
             break;
         }
