@@ -56,6 +56,9 @@ private:
     Texture paredesInterioresT;
     Sprite paredesInterioresS;
 
+Texture pisotexture;
+Sprite pisosprite;
+
     const float MOVE_DISTANCE = 5.0f; // Distancia de movimiento del fantasma
 
     std::vector<sf::RectangleShape> bullets;

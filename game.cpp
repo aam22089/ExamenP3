@@ -121,6 +121,13 @@ paredesInterioresS.setPosition(0,0);
     }
     paredExteriorSprite.setTexture(paredExteriorTexture);
     paredExteriorSprite.setTextureRect(IntRect(0, 0, 1920, 1080));
+
+    if(!pisotexture.loadFromFile("piso.png"))
+    {
+        cout << "Error al cargar la imagen" << endl;
+    }
+    pisosprite.setTexture(pisotexture);
+    pisosprite.setTextureRect(IntRect(0, 0, 1920, 1080));
     //paredExteriorSprite.setPosition(WIDTH/4, HEIGHT/4);
 }
 
@@ -165,6 +172,7 @@ void Game::Draw()
 
     drawInteriorWalls();
     drawExteriorWalls();
+    window->draw(pisosprite);
     
     //Draw
     if(fantasmaHits < 10 && isMonsterVisible(fantasmaSprite))
