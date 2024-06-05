@@ -36,6 +36,7 @@ private:
     void drawInteriorWalls();
     void shoot();
     void updateBullets();
+    Sprite gameOver();
 
 private:
     float getDistance(float x1,float y1,float x2,float y2);
