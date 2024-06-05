@@ -21,42 +21,67 @@ Game::Game()
     view.setViewport(sf::FloatRect(0.f,0.f,1.f,1.f));
 
 Barrier pared1(190,110,0,490);
+HitBoxes.push_back(pared1);
 Barrier pared2(460,110,470,490);
-Barrier pared3(100,140,930,0);
+HitBoxes.push_back(pared2);
+Barrier pared3(100,325,930,275);
+HitBoxes.push_back(pared3);
+Barrier pared4(100,140,930,0);
+HitBoxes.push_back(pared4);
+Barrier pared5(1080,50,180,870);
+HitBoxes.push_back(pared5);
+Barrier pared6(55,225,1460,860);
+HitBoxes.push_back(pared6);
+Barrier pared7(55,430,1460,270);
+HitBoxes.push_back(pared7);
+Barrier pared8(160,50,1515,270);
+HitBoxes.push_back(pared8);
+Barrier pared9(130,50,1790,270);
+HitBoxes.push_back(pared9);
+
+
 
     for(int i = 0; i < WALL_COUNT; i++)
     {
         Line l;
         walls.push_back(l);
     }
+    //pared 1
     walls[0].setPos(0,490,190,490);
     walls[1].setPos(190,490,190,600);
     walls[2].setPos(190,600,0,600);
+    //pared 2 y 3
     walls[3].setPos(470,490,930,490);
     walls[4].setPos(930,490,930,275);
     walls[5].setPos(930,275,1030,275);
     walls[6].setPos(1030,275,1030,600);
     walls[7].setPos(1030,600,470,600);
     walls[8].setPos(470,600,470,490);
+    //pared 4
     walls[9].setPos(930,0,930,140);
     walls[10].setPos(930,140,1030,140);
     walls[11].setPos(1030,140,1030,0);
+    //pared 5
     walls[12].setPos(180,870,1260,870);
     walls[13].setPos(1260,870,1260,920);
     walls[14].setPos(1260,920,180,920);
     walls[15].setPos(180,920,180,870);
+    //pared 6
     walls[16].setPos(1460,HEIGHT,1460,860);
     walls[17].setPos(1460,860,1515,860);
     walls[18].setPos(1515,860,1515,HEIGHT);
+    //pared 7 y 8
     walls[19].setPos(1460,270,1675,270);
     walls[20].setPos(1675,270,1675,320);
     walls[21].setPos(1675,320,1515,320);
     walls[22].setPos(1515,320,1515,700);
     walls[23].setPos(1515,700,1460,700);
     walls[24].setPos(1460,700,1460,270);
+    //pared 9
     walls[25].setPos(WIDTH,270,1790,270);
     walls[26].setPos(1790,270,1790,320);
     walls[27].setPos(1790,320, WIDTH,320);
+    //exteriores
     walls[28].setPos(0,HEIGHT,WIDTH,HEIGHT);
     walls[29].setPos(WIDTH,HEIGHT,WIDTH,0);
     walls[30].setPos(0,0,0,HEIGHT);
