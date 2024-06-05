@@ -9,10 +9,8 @@ class Barrier
     public:
     
     RectangleShape Hitbox;
-    Sprite spared;
-    Texture tpared;
 
-    Barrier(float b, float h, int x, int y, String direct);
+    Barrier(float b, float h, int x, int y);
 
 
 };
