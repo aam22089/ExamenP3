@@ -159,15 +159,15 @@ void Game::Draw()
            walls[j].L[0].color=Color::Black;
            walls[j].L[1].color=Color::Black;}
 
-    drawExteriorWalls();
     drawInteriorWalls();
+    drawExteriorWalls();
     
     //Draw
     if(isMonsterVisible(fantasmaSprite))
     {
         cout << "visible"  << endl;
         this->window->draw(fantasmaSprite);
-        this->fantasmaSprite.move(.1,.1);
+        this->fantasmaSprite.move(.05,.05);
     }
     
     if(isMonsterVisible(zombieSprite))
@@ -189,7 +189,8 @@ void Game::Update()
 {
     EventUpdate();
 
-    //UPDATES:
+
+   //UPDATES:
     player.update(window);
     player.move();
     view.setCenter(camera.x/2,camera.y/2);
@@ -198,10 +199,16 @@ void Game::Update()
     moverFantasma();
     moverZombie();
     updateBullets();
+    
 
     //
 
     Draw();
+    if (getDistance(player.pos.x,player.pos.y,zombieSprite.getPosition().x,zombieSprite.getPosition().y) < 10|| 
+getDistance(player.pos.x,player.pos.y,fantasmaSprite.getPosition().x,fantasmaSprite.getPosition().y)<10)
+{window->draw(gameOver());
+
+}
     
 }
 
@@ -418,6 +425,18 @@ void Game::updateBullets()
             break;
         }
     }
+}
+
+Sprite Game::gameOver()
+{
+    Texture gameovertexture;
+    if(!gameovertexture.loadFromFile("gameOver.png.crdownload"))
+    cout<<"Error al cargar imager " << endl;
+    Sprite gameoversprite;
+    gameoversprite.setTexture(gameovertexture);
+    gameoversprite.setPosition(0,0);
+    gameoversprite.setTextureRect(IntRect(0,0,1920,1080));
+return gameoversprite;
 }
 
 void Game::Logic()
