@@ -29,6 +29,18 @@ void Player::show(sf::RenderWindow *window)
 
 void Player::move()
 {
+
+    bool isCollide = false;
+
+    for (const auto& hitbox : HitBoxes)
+    {
+        if (zombieSprite.getGlobalBounds().intersects(hitbox.Hitbox.getGlobalBounds()))
+        {
+            isCollide = true;
+            break;
+        }
+    }
+    
     //this->pos = sf::Vector2f(sf::Mouse::getPosition((*window)).x, sf::Mouse::getPosition((*window)).y);
     float speed = 5;
     this->circle->setPosition(this->pos);
